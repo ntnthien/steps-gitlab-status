@@ -28,8 +28,8 @@ type config struct {
 
 // getRepo parses the repository from a url
 func getRepo(u string) string {
-	r := regexp.MustCompile(`.*[:/](.+?\/.+?)(?:\.git|$|\/)`)
-	if matches := r.FindStringSubmatch(u); len(matches) == 2 {
+	r := regexp.MustCompile(`:(.*?).git`)
+	if matches := r.FindStringSubmatch(u); len(matches) > 1 {
 		return matches[1]
 	}
 	return ""
